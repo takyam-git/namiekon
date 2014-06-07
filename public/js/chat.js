@@ -2,7 +2,7 @@
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
 // PeerJS object
-var peer = new Peer({ key: '0d23e15a-ec9e-11e3-a4dc-a58673b98496', debug: 3});
+var peer = new Peer({ key: '71xxk54atsps0pb9',  debug: 3});
 
 peer.on('open', function(){
   $('#my-id').text(peer.id);
