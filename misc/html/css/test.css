@@ -1,0 +1,59 @@
+body {
+
+}
+
+
+/* id */
+#message {
+    font-size: 30px;
+    text-align: center;
+}
+#male {
+    background-image: url('../images/male.png');
+    background-color: #B6D8FF;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 2.5px;
+    width: 120px;
+    height: 120px;
+}
+
+#female {    
+    background-image: url('../images/female.png');
+    background-color: #FFB8B6;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 2.5px;
+    width: 120px;
+    height: 120px;
+}
+/* class */
+div.container {
+}
+div.main{
+    background-color: #FFE5E4;
+    margin: 5px;
+}
+.header{
+    text-align: center;
+    background-color: #FFE5E4;
+    margin: 5px;
+}
+.footer{
+    text-align: center;
+    background-color: #FFE5E4;
+    margin: 5px;
+}
+.btn-layout{
+    width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.btn-group{
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.select {
+    border-radius: 10px;    
+}

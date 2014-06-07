@@ -1,0 +1,3 @@
+#!/usr/local/bin/node
+var debug = require('debug')('namiekon');
+var app = require('../app');

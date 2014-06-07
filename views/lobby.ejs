@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lobby</title>
+	<link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1>ロビー</h1>
+<p>your name : <%= user_name %></p>
+<p>your gender : <%= user_gender %></p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	var socket = io();
+	socket.emit('hoge', function(){
+		console.log(arguments);
+	});
+</script>
+</body>
+</html>
