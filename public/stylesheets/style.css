@@ -23,19 +23,6 @@ a {
   background-color: #eee;
 }
 
-#their-video {
-  width: 320px;
-  height: 240px;
-  max-height: 480px;
-  background-color: #eee;
-}
-
-#video-container {
-  /* padding: 25px; */
-  /* text-align: center; */
-}
-
-
 /*!
 Pure v0.3.0
 Copyright 2013 Yahoo! Inc. All rights reserved.
@@ -68,10 +55,6 @@ Copyright (c) Nicolas Gallagher and Jonathan Neal
   background: rgb(66, 184, 221); /* this is a light blue */
 }
 
-
-
-
-
 *, *:before, *:after {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
@@ -82,5 +65,3 @@ Copyright (c) Nicolas Gallagher and Jonathan Neal
 #my-id {
   font-weight: bold;
 }
-
-
