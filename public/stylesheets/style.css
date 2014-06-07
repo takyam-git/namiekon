@@ -9,14 +9,32 @@ a {
 
 #overlay {
   position: absolute;
-  top: 0px;
-  left:0;
+  top: 50px;
+  left:50px;
   right:0;
-  margin-left:auto;
-  margin-right:auto;
   z-index: 100001;
   display: block;
 }
+
+#my-video {
+  margin-top: 15px;
+  width: 280px;
+  height: auto;
+  background-color: #eee;
+}
+
+#their-video {
+  width: 320px;
+  height: 240px;
+  max-height: 480px;
+  background-color: #eee;
+}
+
+#video-container {
+  /* padding: 25px; */
+  /* text-align: center; */
+}
+
 
 /*!
 Pure v0.3.0
@@ -56,25 +74,6 @@ Copyright (c) Nicolas Gallagher and Jonathan Neal
 
 *, *:before, *:after {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-}
-
-#my-video {
-  margin-top: 15px;
-  width: 280px;
-  height: auto;
-  background-color: #eee;
-}
-
-#their-video {
-  width: 100%;
-  height: 75%;
-  max-height: 480px;
-  background-color: #eee;
-}
-
-#video-container {
-  padding: 25px;
-  text-align: center;
 }
 
 #step1-error, #step2, #step3 {

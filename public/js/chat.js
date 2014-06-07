@@ -48,7 +48,7 @@ function step1 () {
   // Get audio/video stream
   navigator.getUserMedia({audio: true, video: true}, function(stream){
     // Set your video displays
-    $('#my-video').prop('src', URL.createObjectURL(stream));
+    // $('#my-video').prop('src', URL.createObjectURL(stream));
 
     window.localStream = stream;
     step2();
@@ -77,5 +77,7 @@ function step3 (call) {
   call.on('close', step2);
   $('#step1, #step2').hide();
   $('#step3').show();
+
+  step4();
 }
 

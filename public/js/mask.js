@@ -1,17 +1,18 @@
-$(function(){
+function step4 (){
+  console.log("step4");
   var videoInput = document.getElementById('their-video');
   var canvasInput = document.getElementById('compare');
   var canvasOverlay = document.getElementById('overlay')
   var overlayContext = canvasOverlay.getContext('2d');
 
   var htracker = new headtrackr.Tracker();
-  htracker.init(videoInput, canvasInput);
+  htracker.init(videoInput, canvasInput, false);
   htracker.start();
 
   var image = new Image();
   setImage = function(index){
     if (index) {
-      image.src = "/images/namie.png";
+      image.src = "/images/test.png";
     }
   }
   setImage(1);
@@ -27,5 +28,5 @@ $(function(){
     }
   });
 
-});
+}
 
