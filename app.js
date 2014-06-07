@@ -115,9 +115,12 @@ io.use(function (socket, callback) {
 });
 
 var matchingEjs = ejs.compile(fs.readFileSync(__dirname + '/views/matching.ejs').toString());
-
+var males = 0
+  , females = 0;
 io.on('connection', function (socket) {
-  socket.on('goLobby', function (data) {
+  socket.on('goLobby', function (data)
+  {
+    console.log(data);
     var gender = data.gender;
     if (gender == 'male' || gender == 'female') {
       var targetGender = gender == 'male' ? 'female' : 'male'
@@ -125,11 +128,19 @@ io.on('connection', function (socket) {
         , targetRoom = targetGender + '_room';
       socket.join(joinRoom);
 
-//      io.to(targetRoom).emit('refreshCount', {count: io.sockets.length - 1});
+      if(gender == 'male'){
+        males++;
+      }else{
+        females++;
+      }
 
+      io.to(targetRoom).emit('refreshCount', {count: gender == 'male' ? males : females });
       var html = matchingEjs({gender: gender});
-      socket.emit('goLobby', {html: html, count: io.sockets.length - 1});
+      socket.emit('goLobby', {html: html, count: gender == 'male' ? females : males});
     }
+  });
+  socket.on('disconnect', function(){
+    socket.leaveAll();
   });
 });
 

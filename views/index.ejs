@@ -24,7 +24,7 @@
 			<p>あなたの名前を入力してください．</p>
 			<div class="input-group">
 				<span class="input-group-addon">@</span>
-				<input type="text" class="form-control" placeholder="ここをタッチして入力">
+				<input type="text" id="username" class="form-control" placeholder="ここをタッチして入力">
 			</div>
 			<p>あなたの性別を選んでください．</p>
 			<div class="btn-group">
@@ -45,7 +45,16 @@
 </div>
 <!-- /container -->
 
-
+<div class="modal fade" id="matchingmodal" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>マッチングしたよ！</p>
+				<p>次の画面とのつなぎ込みは未実装だよ！</p>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -56,7 +65,9 @@
 	(function ($) {
 		var socket = io()
 		  , $mainContainer
-		  , $lobbyCounter;
+		  , $lobbyCounter
+		  , myGender
+		  , $matchingModal;
 		socket.on('connect', function(){
 			console.log('connected');
 		});
@@ -74,13 +85,20 @@
 			changeLobbyMembers(data.count);
 		});
 		var changeLobbyMembers = function(count){
-			if($lobbyCounter.length > 0) $lobbyCounter.text(count+'人');
+			if($lobbyCounter.length > 0) $lobbyCounter.text((myGender=='male'?'女性':'男性')+count+'人');
+			if(count >= 1){
+				setTimeout(function(){
+					$matchingModal.modal('show');
+				}, 3000);
+			}
 		};
 		$(function () {
 			$mainContainer = $('#mainContainer');
 			var $maleBtn = $('.male')
 			  , $femaleBtn = $('.female')
-			  , $submitBtn = $('#submit_button');
+			  , $submitBtn = $('#submit_button')
+			  , $userName = $('#username');
+			$matchingModal = $('#matchingmodal');
 			$maleBtn.on('click', function () {
 				$maleBtn.addClass('selected');
 				$femaleBtn.removeClass('selected');
@@ -92,10 +110,17 @@
 				$submitBtn.removeAttr('disabled');
 			});
 			$('#initform').on('submit', function(){
+				var name = $userName.val();
+				if( name.length === 0){
+					name = '名無しさん';
+				}
+				console.log('hoge');
 				if($maleBtn.hasClass('selected')){
-					socket.emit('goLobby', {gender: 'male'});
+					myGender = 'male';
+					socket.emit('goLobby', {gender: 'male', name: name});
 				}else if($femaleBtn.hasClass('selected')){
-					socket.emit('goLobby', {gender: 'female'});
+					myGender = 'female'
+					socket.emit('goLobby', {gender: 'female', name: name});
 				}else{
 				}
 				return false;
