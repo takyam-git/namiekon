@@ -43,7 +43,23 @@ $(function(){
 
   // open mask
   $('#open-mask').click(function(){
+    console.log("@@@sendOpenMask");
     sendOpenMask();
+  });
+
+  $('#normal').click(function(){
+    console.log("@@@normal");
+    sendNormal();
+  });
+
+  $('#angly').click(function(){
+    console.log("@@@normal");
+    sendAngly();
+  });
+
+  $('#smile').click(function(){
+    console.log("@@@normal");
+    sendSmile();
   });
 
   // Get things started
@@ -96,27 +112,58 @@ function connect(c) {
   console.log("CONNECTION");
   console.log(c);
   // Handle a chat connection.
-  if (c.label === 'openMask') {
-    console.log(c.label);
-    console.log(c.label === 'openMask' );
-    window.openMask = true;
-  }
+  if (c.label === 'openMask') { window.openMask = true; }
+  if (c.label === 'normal') { window.emotionFlag = 0; }
+  if (c.label === 'smile') { window.emotionFlag = 1; }
+  if (c.label === 'angly') { window.emotionFlag = 2; }
   connectedPeers[c.peer] = 1;
+  c.close();
 }
 
 function sendOpenMask() {
+  console.log("@@@sendOpenMask");
   requestedPeerId = window.existingCall.peer;
-  if (!connectedPeers[requestedPeerId]) {
+  // if (!connectedPeers[requestedPeerId]) {
     var c = peer.connect(requestedPeerId, {
       label: 'openMask',
       serialization: 'none',
       metadata: {message: '真の姿を見せる時が来た！'}
     });
-    c.on('open', function() {
-      connect(c);
+    // c.on('open', function() {
+    //   connect(c);
+    // });
+    // c.on('error', function(err) { alert(err); });
+  // }
+  // connectedPeers[requestedPeerId] = 1;
+}
+
+function sendSmile() {
+  console.log("@@@smile");
+  requestedPeerId = window.existingCall.peer;
+    var c = peer.connect(requestedPeerId, {
+      label: 'smile',
+      serialization: 'none',
+      metadata: {message: '真の姿を見せる時が来た！'}
     });
-    c.on('error', function(err) { alert(err); });
-  }
-  connectedPeers[requestedPeerId] = 1;
+}
+
+function sendAngly() {
+  console.log("@@@smile");
+  requestedPeerId = window.existingCall.peer;
+    var c = peer.connect(requestedPeerId, {
+      label: 'angly',
+      serialization: 'none',
+      metadata: {message: '真の姿を見せる時が来た！'}
+    });
+}
+
+function sendNormal() {
+  console.log("@@@smile");
+  requestedPeerId = window.existingCall.peer;
+    var c = peer.connect(requestedPeerId, {
+      label: 'normal',
+      serialization: 'none',
+      metadata: {message: '真の姿を見せる時が来た！'}
+    });
 }
 
