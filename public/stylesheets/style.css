@@ -7,6 +7,17 @@ a {
   color: #00B7FF;
 }
 
+#overlay {
+  position: absolute;
+  top: 0px;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  z-index: 100001;
+  display: block;
+}
+
 /*!
 Pure v0.3.0
 Copyright 2013 Yahoo! Inc. All rights reserved.
