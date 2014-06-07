@@ -1,0 +1,54 @@
+body {
+    background-color: #FFEFDC;
+}
+
+/* id */
+div.container {
+    background-color: #ffffff;
+    border:solid 3px #ddd;
+    border-radius: 10px;
+}
+
+div#counter {
+    background-color: #E4F1FF; 
+    border:solid 3px #ddd;
+    border-radius: 5px;    
+    float: right;
+    font-size: 30px;
+    margin: 10px;
+    text-align: right;
+    width: 100px;
+    height: 50px;
+    
+}
+
+#loading {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/ajax-loader.gif');    
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+
+#message {
+    font-size: 30px;
+    width: 300px;    
+    margin-right: auto;
+    margin-left: auto;    
+    text-align: center;
+}
+
+button#stop{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+/* class */
+.centering {
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;        
+}
+

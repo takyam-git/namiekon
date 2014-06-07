@@ -2,10 +2,63 @@
 <html>
   <head>
     <title><%= title %></title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="/css/test.css" rel="stylesheet">
+
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="container">
+        <div class="header">
+            <h1><%= title %></h1>
+            <p>あなたの婚活を手軽にサポート！<br>
+               あなたの名前と性別を入力して，相手を探すボタンをクリック！！
+            </p>
+        </div>
+        <div class="main">
+            <form id="init" action="matching_male">
+                <p>あなたの名前を入力してください．</p>
+                <div class="input-group">
+                  <span class="input-group-addon">@</span>
+                  <input type="text" class="form-control" placeholder="ここをタッチして入力">
+                </div>
+                <p>あなたの性別を選んでください．</p>
+                <div class="btn-group">
+                    <div class="male">
+                        <button type="button" class="gender btn btn-default">男性</button>
+                    </div>
+                    <div  class="female">
+                        <button type="button" class="gender btn btn-default">女性</button>
+                    </div>
+                </div>
+                <!--
+                <div class="btn-group">
+                    <input type="radio" name="gender" value="male" class="gender" id="male">
+                    <label for="male" class="gender male"></label> 
+                    <input type="radio" name="gender" value="female" class="gender" id="female">
+                    <label for="female" class="gender female"></label> 
+                </div>
+                    -->
+                <input type="submit" id="submit_button" class="form_parts btn btn-default btn-lg" value="相手を探す．">
+            </form>
+            
+        </div>
+        <div class="footer">
+            produced by team.namiekon
+        </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+<!--    <script src="js/initTest.js"></script>-->
+    <script src="/js/handler_index.js"></script>
   </body>
 </html>
