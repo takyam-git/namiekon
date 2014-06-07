@@ -1,4 +1,7 @@
-namiekon
-========
+# namiekon
 
-http://codeforjapan.doorkeeper.jp/events/11422
+## about
+* http://codeforjapan.doorkeeper.jp/events/11422
+
+## setup
+* npm install
