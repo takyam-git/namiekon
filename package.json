@@ -1,27 +1,18 @@
 {
   "name": "namiekon",
-  "version": "0.0.0",
-  "description": "http://codeforjapan.doorkeeper.jp/events/11422",
-  "main": "index.js",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "start": "NODE_ENV=production node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/takyam-git/namiekon.git"
-  },
-  "keywords": [
-    "webrtc"
-  ],
-  "author": "takyam, kazuph",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/takyam-git/namiekon/issues"
-  },
-  "homepage": "https://github.com/takyam-git/namiekon",
   "dependencies": {
-    "express": "~4.4.1",
-    "socket.io": "^1.0.4"
+    "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "ejs": "~0.8.5",
+    "express": "~4.2.0",
+    "morgan": "~1.0.0",
+    "socket.io": "^1.0.4",
+    "static-favicon": "~1.0.0"
   }
 }
