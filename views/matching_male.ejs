@@ -48,7 +48,18 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/initTest2.js"></script>
-    <script src="/js/handler_matching.js"></script>      
+	<script type="text/javascript">
+		var members = 0;
+		$(document).ready(function(){
+			test(); // for DEBUG
+			$('#counter').text(members+'人');
+
+		});
+
+		function test(){
+			members = 0;
+		}
+	</script>
+    <script src="/js/handler_matching.js"></script>
 </body>
 </html>

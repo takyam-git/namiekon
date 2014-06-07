@@ -13,7 +13,9 @@ var express = require('express')
   , cookie = require('cookie')
   , Session = require('express-session')
   , connect = require('connect')
-  , sessionStore = new Session.MemoryStore();
+  , sessionStore = new Session.MemoryStore()
+  , ejs = require('ejs')
+  , fs = require('fs');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -77,7 +79,7 @@ var parseCookie = cookieParser('appSecretKey');
 io.use(function (socket, callback) {
   var handshakeData = socket.request;
   if (handshakeData.headers.cookie) {
-    parseCookie(handshakeData, null, function(err, cookie) {
+    parseCookie(handshakeData, null, function (err, cookie) {
       if (err) {
         return accept('Error parseCookie.', false);
       }
@@ -112,22 +114,22 @@ io.use(function (socket, callback) {
   }
 });
 
+var matchingEjs = ejs.compile(fs.readFileSync(__dirname + '/views/matching.ejs').toString());
+
 io.on('connection', function (socket) {
-//  console.log('session data', socket.handshake);
-  console.log('session data', socket.request.sessionID);
+  socket.on('goLobby', function (data) {
+    var gender = data.gender;
+    if (gender == 'male' || gender == 'female') {
+      var targetGender = gender == 'male' ? 'female' : 'male'
+        , joinRoom = gender + '_room'
+        , targetRoom = targetGender + '_room';
+      socket.join(joinRoom);
 
-  socket.on("hoge", function(message) {
-    console.log(socket.request.sessionID);
-  });
+//      io.to(targetRoom).emit('refreshCount', {count: io.sockets.length - 1});
 
-  //Expressのセッションを定期的に更新する
-  var sessionReloadIntervalID = setInterval(function() {
-    socket.handshake.session.reload(function() {
-      socket.handshake.session.touch().save();
-    });
-  }, 60 * 2 * 1000);
-  socket.on("disconnect", function(message) {
-    clearInterval(sessionReloadIntervalID);
+      var html = matchingEjs({gender: gender});
+      socket.emit('goLobby', {html: html, count: io.sockets.length - 1});
+    }
   });
 });
 
