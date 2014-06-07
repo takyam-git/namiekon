@@ -105,9 +105,9 @@ function connect(c) {
 }
 
 function sendOpenMask() {
-  requestedPeer = window.existingCall.peer;
-  if (!connectedPeers[requestedPeer]) {
-    var c = peer.connect(requestedPeer, {
+  requestedPeerId = window.existingCall.peer;
+  if (!connectedPeers[requestedPeerId]) {
+    var c = peer.connect(requestedPeerId, {
       label: 'openMask',
       serialization: 'none',
       metadata: {message: '真の姿を見せる時が来た！'}
@@ -117,6 +117,6 @@ function sendOpenMask() {
     });
     c.on('error', function(err) { alert(err); });
   }
-  connectedPeers[requestedPeer] = 1;
+  connectedPeers[requestedPeerId] = 1;
 }
 
