@@ -11,6 +11,7 @@ peer.on('open', function(){
 // Receiving a call
 peer.on('call', function(call){
   // Answer the call automatically (instead of prompting user) for demo purposes
+  console.log(call);
   call.answer(window.localStream);
   step3(call);
 });
@@ -38,6 +39,11 @@ $(function(){
   $('#step1-retry').click(function(){
     $('#step1-error').hide();
     step1();
+  });
+
+  // open mask
+  $('#open-mask').click(function(){
+    sendOpenMask();
   });
 
   // Get things started
@@ -79,5 +85,38 @@ function step3 (call) {
   $('#step3').show();
 
   step4();
+}
+
+
+/////////////////////////////////
+// chat message
+var connectedPeers = {};
+peer.on('connection', connect);
+function connect(c) {
+  console.log("CONNECTION");
+  console.log(c);
+  // Handle a chat connection.
+  if (c.label === 'openMask') {
+    console.log(c.label);
+    console.log(c.label === 'openMask' );
+    window.openMask = true;
+  }
+  connectedPeers[c.peer] = 1;
+}
+
+function sendOpenMask() {
+  requestedPeer = window.existingCall.peer;
+  if (!connectedPeers[requestedPeer]) {
+    var c = peer.connect(requestedPeer, {
+      label: 'openMask',
+      serialization: 'none',
+      metadata: {message: '真の姿を見せる時が来た！'}
+    });
+    c.on('open', function() {
+      connect(c);
+    });
+    c.on('error', function(err) { alert(err); });
+  }
+  connectedPeers[requestedPeer] = 1;
 }
 
